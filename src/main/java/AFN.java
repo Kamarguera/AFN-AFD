@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Estados {
-    public static List<Estados> listaDeEstados = new ArrayList<>();
+public class AFN {
+    public static List<AFN> listaDeEstados = new ArrayList<>();
     public List<String> estadosDeTransicao = new ArrayList<>();
     public List<String> cadeiasLidasPeloEstado = new ArrayList<>();
-    public ArrayList<Estados> transicaoDeEstados;
+    public ArrayList<AFN> transicaoDeEstados;
     Boolean estadoInicial, estadoFinal, estadoAtivo = false;
     String stringDeEntrada =
             "q1 a,q2,q3,true,true\n" +
@@ -22,10 +22,10 @@ public class Estados {
 
 
     //region Construtor
-    public Estados() {
+    public AFN() {
     }
 
-    private Estados(String nome, List<String> estadosDeTransicao) {
+    private AFN(String nome, List<String> estadosDeTransicao) {
 
         this.nome = nome;
         this.estadosDeTransicao = estadosDeTransicao;
@@ -49,7 +49,7 @@ public class Estados {
         return estadosDeTransicao;
     }
 
-    public ArrayList<Estados> getTransicaoDeEstados() {
+    public ArrayList<AFN> getTransicaoDeEstados() {
         return transicaoDeEstados;
     }
 
@@ -73,11 +73,11 @@ public class Estados {
         this.estadoAtivo = estadoAtivo;
     }
 
-    public List<Estados> getListaDeEstados() {
+    public List<AFN> getListaDeEstados() {
         return listaDeEstados;
     }
 
-    public void setListaDeEstados(List<Estados> listaDeEstados) {
+    public void setListaDeEstados(List<AFN> listaDeEstados) {
         this.listaDeEstados = listaDeEstados;
     }
 
@@ -120,8 +120,8 @@ public class Estados {
 
         System.out.print("estados ativos atuais: ");
 
-        listaDeEstados.forEach(estados -> {
-            if (estados.estadoAtivo) System.out.print("[" + estados + "]");
+        listaDeEstados.forEach(AFN -> {
+            if (AFN.estadoAtivo) System.out.print("[" + AFN + "]");
         });
 
 
@@ -135,7 +135,7 @@ public class Estados {
 //            System.out.println(linhas);
 
             String[] estados = linhas.split(",");
-            Estados q = new Estados();
+            AFN q = new AFN();
 
 
             insereEstadosAtivos(estados, q);
@@ -157,7 +157,7 @@ public class Estados {
 
 
     //region métodos utilizados por  decodificaStringParaCriarEstados
-    private void printEstadosAceitosECadeias(Estados q) {
+    private void printEstadosAceitosECadeias(AFN q) {
 
         System.out.println("estados aceitos por " +
                 q +
@@ -170,11 +170,11 @@ public class Estados {
     }
 
 
-    private void adicionaEstadosNaListaDeEstados(Estados q) {
+    private void adicionaEstadosNaListaDeEstados(AFN q) {
         listaDeEstados.add(q);
     }
 
-    private void adicionarEstadosDeTransicao(String[] estados, Estados q) {
+    private void adicionarEstadosDeTransicao(String[] estados, AFN q) {
 
 
         for (int i = 1; i < estados.length - 2; i++) {
@@ -187,13 +187,13 @@ public class Estados {
     }
 
 
-    private void insereNomeDoEstado(String estados, Estados q) {
+    private void insereNomeDoEstado(String estados, AFN q) {
         String[] split = estados.split(" ");
         String nomeDoEstado = split[0];
         q.setNome(nomeDoEstado);
     }
 
-    private void insereEstadosAtivos(String[] estados, Estados q) {
+    private void insereEstadosAtivos(String[] estados, AFN q) {
 
         q.setEstadoAtivo(Boolean.valueOf(estados[estados.length - 2]));
         q.setEstadoFinal(Boolean.valueOf(estados[estados.length - 1]));
@@ -206,7 +206,7 @@ public class Estados {
         return nomeDoEstado;
     }
 
-    private void importarCadeiasLidasPeloEstado(String estados, Estados q) {
+    private void importarCadeiasLidasPeloEstado(String estados, AFN q) {
         String[] cadeias = estados.split(" ");
 
 
