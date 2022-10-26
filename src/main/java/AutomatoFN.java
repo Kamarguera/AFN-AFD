@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class AFN {
-    public static List<AFN> listaDeEstados = new ArrayList<>();
+public class AutomatoFN {
+    public static List<AutomatoFN> listaDeEstados = new ArrayList<>();
     public List<String> estadosDeTransicao = new ArrayList<>();
     public List<String> cadeiasLidasPeloEstado = new ArrayList<>();
-    public ArrayList<AFN> transicaoDeEstados;
+    public ArrayList<AutomatoFN> transicaoDeEstados;
     Boolean estadoInicial, estadoFinal, estadoAtivo = false;
     String stringDeEntrada =
             "q1 a,q2,q3,true,true\n" +
@@ -22,10 +22,10 @@ public class AFN {
 
 
     //region Construtor
-    public AFN() {
+    public AutomatoFN() {
     }
 
-    private AFN(String nome, List<String> estadosDeTransicao) {
+    private AutomatoFN(String nome, List<String> estadosDeTransicao) {
 
         this.nome = nome;
         this.estadosDeTransicao = estadosDeTransicao;
@@ -49,7 +49,7 @@ public class AFN {
         return estadosDeTransicao;
     }
 
-    public ArrayList<AFN> getTransicaoDeEstados() {
+    public ArrayList<AutomatoFN> getTransicaoDeEstados() {
         return transicaoDeEstados;
     }
 
@@ -73,11 +73,11 @@ public class AFN {
         this.estadoAtivo = estadoAtivo;
     }
 
-    public List<AFN> getListaDeEstados() {
+    public List<AutomatoFN> getListaDeEstados() {
         return listaDeEstados;
     }
 
-    public void setListaDeEstados(List<AFN> listaDeEstados) {
+    public void setListaDeEstados(List<AutomatoFN> listaDeEstados) {
         this.listaDeEstados = listaDeEstados;
     }
 
@@ -120,8 +120,8 @@ public class AFN {
 
         System.out.print("estados ativos atuais: ");
 
-        listaDeEstados.forEach(AFN -> {
-            if (AFN.estadoAtivo) System.out.print("[" + AFN + "]");
+        listaDeEstados.forEach(AutomatoFN -> {
+            if (AutomatoFN.estadoAtivo) System.out.print("[" + AutomatoFN + "]");
         });
 
 
@@ -135,7 +135,7 @@ public class AFN {
 //            System.out.println(linhas);
 
             String[] estados = linhas.split(",");
-            AFN q = new AFN();
+            AutomatoFN q = new AutomatoFN();
 
 
             insereEstadosAtivos(estados, q);
@@ -157,7 +157,7 @@ public class AFN {
 
 
     //region métodos utilizados por  decodificaStringParaCriarEstados
-    private void printEstadosAceitosECadeias(AFN q) {
+    private void printEstadosAceitosECadeias(AutomatoFN q) {
 
         System.out.println("estados aceitos por " +
                 q +
@@ -170,11 +170,11 @@ public class AFN {
     }
 
 
-    private void adicionaEstadosNaListaDeEstados(AFN q) {
+    private void adicionaEstadosNaListaDeEstados(AutomatoFN q) {
         listaDeEstados.add(q);
     }
 
-    private void adicionarEstadosDeTransicao(String[] estados, AFN q) {
+    private void adicionarEstadosDeTransicao(String[] estados, AutomatoFN q) {
 
 
         for (int i = 1; i < estados.length - 2; i++) {
@@ -187,13 +187,13 @@ public class AFN {
     }
 
 
-    private void insereNomeDoEstado(String estados, AFN q) {
+    private void insereNomeDoEstado(String estados, AutomatoFN q) {
         String[] split = estados.split(" ");
         String nomeDoEstado = split[0];
         q.setNome(nomeDoEstado);
     }
 
-    private void insereEstadosAtivos(String[] estados, AFN q) {
+    private void insereEstadosAtivos(String[] estados, AutomatoFN q) {
 
         q.setEstadoAtivo(Boolean.valueOf(estados[estados.length - 2]));
         q.setEstadoFinal(Boolean.valueOf(estados[estados.length - 1]));
@@ -206,7 +206,7 @@ public class AFN {
         return nomeDoEstado;
     }
 
-    private void importarCadeiasLidasPeloEstado(String estados, AFN q) {
+    private void importarCadeiasLidasPeloEstado(String estados, AutomatoFN q) {
         String[] cadeias = estados.split(" ");
 
 
