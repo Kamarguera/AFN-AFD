@@ -41,8 +41,15 @@ public class AutomatoFNTest {
     @Test
     public void funcaoDeTransicao() {
 
+
+        AutomatoFN AutomatoFN = new AutomatoFN();
+        AutomatoFN.decodificaStringParaCriarEstados();
+//        System.out.println(AutomatoFN.getListaDeEstados());
         //obter o estado atual ativo
+//        AutomatoFN.retornaEstadosAtivosAtuais();
         //passar uma cadeia para o estado atual ativo
+        String cadeiaDeDados = "a";
+        AutomatoFN.lerCadeiaDeDados(cadeiaDeDados);
         //atualizar estados ativos
 
 
