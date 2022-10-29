@@ -70,7 +70,7 @@ public class AutomatoFNTest {
 
         AutomatoFN AutomatoFN = new AutomatoFN();
         AutomatoFN.decodificaStringParaCriarEstados();
-        System.out.println(AutomatoFN.getListaDeEstados());
+//        System.out.println(AutomatoFN.getListaDeEstados());
 
         //get estado ativo e insere cadeia;
 
