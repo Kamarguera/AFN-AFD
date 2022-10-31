@@ -2,6 +2,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 
 public class AutomatoFN {
@@ -12,9 +13,11 @@ public class AutomatoFN {
     public List<String> cadeiasLidasPeloEstado = new ArrayList<>();
     public ArrayList<AutomatoFN> transicaoDeEstados;
     public List<AutomatoFN> listaDeEstadosAtivos = new ArrayList<>();
+    public Map<String, List<AutomatoFN>> listaDeEstadosAtivosAFD = new HashMap<>();
     //region variáveis
     Map<String, List<AutomatoFN>> listaDeEstadosAFD = new HashMap<>();
     ListMultimap<String, AutomatoFN> cadeiaEstadoHashMap = ArrayListMultimap.create();
+    ListMultimap<String, AutomatoFN> cadeiaEstadoHashMapAFN = ArrayListMultimap.create();
     Boolean cadeiaAceitaBool = false;
     List<AutomatoFN> listaDeEstadosDestino = new ArrayList<>();
     //    public HashMap<String>, AutomatoFN> cadeiaEstadoHashMap = new HashMap<>();
@@ -276,176 +279,6 @@ public class AutomatoFN {
     //endregion métodos utilizados por decodificaStringParaCriarEstados
 
 
-    public void lerCaracteresUmAUmInserindoNoAutomato(String cadeiaDeDados) {
-
-//        for (int i = 0; i < cadeiaDeDados.length(); i++) {
-//            String caractere = String.valueOf(cadeiaDeDados.charAt(i));
-//
-//
-//
-//            for (AutomatoFN listaDeEstadosAtivo : listaDeEstadosAtivos) {
-//
-//                System.out.println(listaDeEstadosAtivo);
-//
-//                AutomatoFN estado = listaDeEstadosAtivo; //estado q1
-//                List<AutomatoFN> listaDeEstadosDestino = estado.cadeiaEstadoHashMap.get(caractere);
-//
-//
-//                System.out.println("lista de estados ativos" + listaDeEstadosAtivos);
-//                System.out.println("lista de estados destino" + listaDeEstadosDestino);
-//
-//
-//                System.out.println("usando cadeia " + "'" + caractere + "'" + " no estado " + estado + " " + " irá para:" + listaDeEstadosDestino); //usando cadeia a
-//
-//
-//
-//            }
-//
-//        }
-//        AutomatoFN estado = listaDeEstadosAtivos.get(0); //estado q1
-//            estado.cadeiaEstadoHashMap.get(cadeiaDeDados);
-
-        listaDeEstadosAtivos.forEach(estadoAtivo -> {
-            listaDeEstadosDestino.addAll(estadoAtivo.cadeiaEstadoHashMap.get("_"));
-        });
-
-        listaDeEstadosAtivos.addAll(listaDeEstadosDestino);
-        listaDeEstadosDestino.clear();
-
-        System.out.println("estados ativos" + listaDeEstadosAtivos + " será lida: '" + cadeiaDeDados + "'");
-
-
-        for (AutomatoFN listaDeEstadosAtivo : listaDeEstadosAtivos) {
-
-//            System.out.println("lista de estado que devem ser adicionados a lista de estado destino" + listaDeEstadosAtivo.cadeiaEstadoHashMap.get(cadeiaDeDados));
-
-
-            listaDeEstadosAtivo.cadeiaEstadoHashMap.get(cadeiaDeDados).forEach(estadoDestino -> {
-
-                listaDeEstadosDestino.add(estadoDestino);
-
-//
-//                System.out.println("lista destino" + listaDeEstadosDestino);
-            });
-
-        }
-
-//        System.out.println("lista de estados ativos" + listaDeEstadosAtivos);
-//        System.out.println("lista de estados destino" + listaDeEstadosDestino);
-
-        if (listaDeEstadosDestino.size() > 0) {
-            listaDeEstadosAtivos.clear();
-
-        }
-
-
-        listaDeEstadosDestino.forEach(estadoAtivar -> {
-            estadoAtivar.estadoAtivo = true;
-            if (!listaDeEstadosAtivos.contains(estadoAtivar)) {
-                listaDeEstadosAtivos.add(estadoAtivar);
-
-            }
-
-
-//            System.out.println("lista de estados ativos" + listaDeEstadosAtivos);
-//            System.out.println("lista de estados destino" + listaDeEstadosDestino);
-
-        });
-
-        listaDeEstadosDestino.clear();
-        listaDeEstadosAtivos.addAll(listaDeEstadosDestino);
-
-//        System.out.println("ativos" + listaDeEstadosAtivos);
-
-        cadeiaAceitaBool = false;
-
-        for (AutomatoFN listaDeEstadosAtivo : listaDeEstadosAtivos)
-            if (listaDeEstadosAtivo.estadoFinal) {
-                cadeiaAceitaBool = true;
-                break;
-            }
-
-//        System.out.println("estados ativos" + listaDeEstadosAtivos + " cadeia lida " + cadeiaDeDados);
-
-
-//            listaDeEstadosDestino.add(listaDeEstadosAtivo.cadeiaEstadoHashMap.get(cadeiaDeDados));
-
-//            System.out.println("lista de estados destino usando o estado " + listaDeEstadosAtivo + listaDeEstadosAtivo.cadeiaEstadoHashMap.get(cadeiaDeDados) + " e a cadeia " + cadeiaDeDados);
-
-
-//            System.out.println("lista destino" + listaDeEstadosDestino);
-
-
-//
-//        List<AutomatoFN> listaDeEstadosDestino = estado.cadeiaEstadoHashMap.get(cadeiaDeDados);
-//
-//        System.out.println("lista de estados ativos" + listaDeEstadosAtivos);
-//        System.out.println("lista de estados destino" + listaDeEstadosDestino);
-//
-//
-//        listaDeEstadosDestino.forEach(estadoAtivado -> {
-//            estado.estadoAtivo = false;
-//            if (listaDeEstadosAtivos.contains(estado)) listaDeEstadosAtivos.remove(estado);
-//
-//            estadoAtivado.estadoAtivo = true;
-//
-////            listaDeEstadosDestino.forEach(estadoDestino -> {
-//                if (!listaDeEstadosAtivos.contains(estadoDestino)) {
-//                    listaDeEstadosAtivos.add(estadoDestino);
-
-
-    }
-//            });
-//
-//        });
-//
-//        listaDeEstadosDestino.clear();
-
-//        System.out.println("lista de estados ativos" + listaDeEstadosAtivos);
-//        System.out.println("lista de estados destino" + listaDeEstadosDestino);
-//
-
-//
-//        System.out.println(estado + " " + estado.cadeiaEstadoHashMap.size());
-
-//
-//        for (int i = 0; i < listaDeEstadosAtivos.size(); i++) {
-//
-//            AutomatoFN estado = listaDeEstadosAtivos.get(i);
-//
-//            System.out.println(listaDeEstadosAtivos.get(i) + " " + listaDeEstadosAtivos.get(i).cadeiaEstadoHashMap.size());
-//
-//
-//            List<AutomatoFN> deveIr = estado.cadeiaEstadoHashMap.get(cadeiaDeDados);
-//
-//            System.out.println(deveIr.size());
-//
-//
-//            System.out.println(estado.cadeiaEstadoHashMap.get(cadeiaDeDados));
-//
-//
-//            if (deveIr != null) {
-//                estado.estadoAtivo = false;
-//
-//
-//
-//                for (AutomatoFN deveir : deveIr) {
-//                    deveir.estadoAtivo = true;
-//                }
-//
-//
-//                atualizaEstadosAtivos();
-//            }
-//
-//
-//            System.out.println("estado " + estado + " deve ir: " + deveIr + " usando cadeia " + cadeiaDeDados);
-//
-//
-//        }
-//
-//        System.out.println(listaDeEstadosAtivos);
-
-
     private void atualizaEstadosAtivos() {
 
 
@@ -504,31 +337,38 @@ public class AutomatoFN {
 
         for (int i = 0; i < cadeiaDeDados.length(); i++) {
             caractere = String.valueOf(cadeiaDeDados.charAt(i));
-            lerCaracteresUmAUmInserindoNoAutomato(caractere);
+            lerCaracteresUmAUmInserindoNoAutomatoAFD(caractere);
         }
         System.out.println("Após ler cadeia: '" + cadeiaDeDados.substring(cadeiaDeDados.length() - 1) + "' estados ativos: " + listaDeEstadosAtivos);
 
         verificarSeCadeiaAceita();
-
     }
 
+    public List<AutomatoFN> lerCadeiaDeDadosAFD(String cadeiaDeDados) {
+
+        System.out.println("Cadeia de entrada: "+cadeiaDeDados);
+
+        String caractere = cadeiaDeDados;
+
+        for (int i = 0; i < cadeiaDeDados.length(); i++) {
+            caractere = String.valueOf(cadeiaDeDados.charAt(i));
+            lerCaracteresUmAUmInserindoNoAutomatoAFD(caractere);
+        }
+        System.out.println("Após ler cadeia: '" + cadeiaDeDados.substring(cadeiaDeDados.length() - 1) + "' estados ativos: " + listaDeEstadosAtivos);
+
+        verificarSeCadeiaAceita();
+        return listaDeEstadosAtivos;
+    }
+
+
     public void criaEstadosDoAFD() {
-
-        System.out.println("Estados do AFD");
-
-
 //
-//        for (int i = 0; i < listaDeEstadosAFN.size(); i++) {
-//
-//
+//        System.out.println("-----------------------------------------");
+//        System.out.println("Estados do AFD");
 
         for (int i = 0; i < listaDeEstadosAFN.size(); i++) {
 
             for (int j = 0; j < listaDeEstadosAFN.size(); j++) {
-
-
-//                System.out.println(j + 1 + " " + (i + 1));
-
 
                 List<AutomatoFN> value = new ArrayList<>();
 
@@ -548,7 +388,7 @@ public class AutomatoFN {
 
 //                System.out.println(key);
 
-                key = "["+ key + "]";
+                key = "[" + key + "]";
 
                 listaDeEstadosAFD.put(key, value);
 
@@ -570,7 +410,6 @@ public class AutomatoFN {
         List<AutomatoFN> value = new ArrayList<>();
 
         for (AutomatoFN automatoFN : listaDeEstadosAFN) {
-
             value.add(automatoFN);
 
         }
@@ -608,28 +447,303 @@ public class AutomatoFN {
         listaDeEstadosAFD.put("_", listaVazia);
 
 
+//        System.out.println(listaDeEstadosAFD.size());
 
 
+//        System.out.println(listaDeEstadosAFD);
 
+//print todos os estados
+        listaDeEstadosAFD.keySet().forEach(stringEstadoAFN -> {
+//            System.out.println("Estado: " + stringEstadoAFN);
+        });
 
-
-
-
-
-
-        System.out.println(listaDeEstadosAFD.size());
-
-
-        listaDeEstadosAFD.get(0);
-
-        System.out.println(listaDeEstadosAFD);
-////        }
 //        System.out.println(listaDeEstadosAFD.get("[q1 q2]"));
 
 
+        //OBTER ESTADO ATIVO AFd
+        //= ESTADOS ATIVOS INICIAIS AFN
+
+
+        listaDeEstadosAtivos.forEach(estadoAtivo -> {
+            listaDeEstadosDestino.addAll(estadoAtivo.cadeiaEstadoHashMap.get("_"));
+        });
+
+        listaDeEstadosAtivos.addAll(listaDeEstadosDestino);
+        listaDeEstadosDestino.clear();
+
+        removeDuplicatasDaLista(listaDeEstadosAtivos);
+
+
+        //obter estado ativo
+        String stringEstadoAtivoAFD = listaDeEstadosAtivos.toString().replace(",", "");
+//        System.out.println(listaDeEstadosAFD.get(stringEstadoAtivoAFD));
+
+
+        //insere estado ativo na lista ativo AFD
+        listaDeEstadosAtivosAFD.put(stringEstadoAtivoAFD, listaDeEstadosAFD.get(stringEstadoAtivoAFD));
+
+//        System.out.println("Estado: " + listaDeEstadosAtivosAFD.keySet());
+
+
+//        System.out.println("Estado: " + listaDeEstadosAtivosAFD.keySet() + " Transições: b" + ));
+
+
+//        System.out.println("Após ler cadeia: '" + cadeiaDeDados.substring(cadeiaDeDados.length() - 1) + "' estados ativos: " + listaDeEstadosAtivos);
+
+
+//        lerCadeiaDeDadosAFD("b").forEach(System.out::println);
+
+
+//        System.out.println();
+
+//        System.out.println("estado ativo afn: " + lerCadeiaDeDadosAFD("b"));
+
+
+//        System.out.println("Após ler cadeia: '" + cadeiaDeDados.substring(cadeiaDeDados.length() - 1) + "' estados ativos: " + listaDeEstadosAtivos);
+
+//        System.out.println(listaDeEstadosAFD.get("[q1 q2]"));
+
+//        verificarSeCadeiaAceita();
     }
+
+    private void removeDuplicatasDaLista(List<AutomatoFN> listaDeEstadosAtivos) {
+
+        this.listaDeEstadosAtivos = listaDeEstadosAtivos.stream()
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
+    public void lerCaracteresUmAUmInserindoNoAutomato(String cadeiaDeDados) {
+
+
+        listaDeEstadosAtivos.forEach(estadoAtivo -> {
+            listaDeEstadosDestino.addAll(estadoAtivo.cadeiaEstadoHashMap.get("_"));
+        });
+
+        listaDeEstadosAtivos.addAll(listaDeEstadosDestino);
+        listaDeEstadosDestino.clear();
+
+        removeDuplicatasDaLista(listaDeEstadosAtivos);
+
+
+        System.out.println("estados ativos" + listaDeEstadosAtivos + " será lida: '" + cadeiaDeDados + "'");
+
+
+        for (AutomatoFN listaDeEstadosAtivo : listaDeEstadosAtivos) {
+//            System.out.println("lista de estado que devem ser adicionados a lista de estado destino" + listaDeEstadosAtivo.cadeiaEstadoHashMap.get(cadeiaDeDados));
+
+
+            listaDeEstadosAtivo.cadeiaEstadoHashMap.get(cadeiaDeDados).forEach(estadoDestino -> {
+
+                listaDeEstadosDestino.add(estadoDestino);
+
+//
+//                System.out.println("lista destino" + listaDeEstadosDestino);
+            });
+
+        }
+
+
+//
+
+//        System.out.println("a" + listaDeEstadosAtivos);
+//        System.out.println("d" + listaDeEstadosDestino);
+
+        if (listaDeEstadosDestino.size() > 0 && !listaDeEstadosDestino.get(0).getCadeiaEstadoHashMap().containsKey("_")) {
+            listaDeEstadosAtivos.clear();
+        }
+
+
+//        System.out.println("lista destiaaaaaaaano" + listaDeEstadosDestino);
+
+//        System.out.println("d" + listaDeEstadosDestino);
+//        System.out.println("vai ler:" + listaDeEstadosDestino.get(0).getCadeiaEstadoHashMap().containsKey("_"));
+//        System.out.println("cehmp:" + listaDeEstadosDestino.get(0).getCadeiaEstadoHashMap());
+
+
+//        System.out.println(listaDeEstadosDestino.size());
+        for (int i = 0; i < listaDeEstadosDestino.size(); i++) {
+//            System.out.println(i);
+            if (listaDeEstadosDestino.get(i).getCadeiaEstadoHashMap().containsKey("_")) {
+
+
+                obterTransicaoEspontanea(listaDeEstadosDestino, cadeiaDeDados);
+            }
+//            System.out.println(i);
+
+
+        }
+
+
+        listaDeEstadosDestino.forEach(estadoAtivar -> {
+            estadoAtivar.estadoAtivo = true;
+            if (!listaDeEstadosAtivos.contains(estadoAtivar)) {
+                listaDeEstadosAtivos.add(estadoAtivar);
+
+            }
+
+
+        });
+
+
+        listaDeEstadosDestino.clear();
+        listaDeEstadosAtivos.addAll(listaDeEstadosDestino);
+
+        removeDuplicatasDaLista(listaDeEstadosAtivos);
+
+
+//        System.out.println("ativos" + listaDeEstadosAtivos);
+
+        cadeiaAceitaBool = false;
+
+        for (AutomatoFN listaDeEstadosAtivo : listaDeEstadosAtivos)
+            if (listaDeEstadosAtivo.estadoFinal) {
+                cadeiaAceitaBool = true;
+                break;
+            }
+
+    }
+
+
+    public void lerCaracteresUmAUmInserindoNoAutomatoAFD(String cadeiaDeDados) {
+
+
+        listaDeEstadosAtivos.forEach(estadoAtivo -> {
+            listaDeEstadosDestino.addAll(estadoAtivo.cadeiaEstadoHashMap.get("_"));
+        });
+
+        listaDeEstadosAtivos.addAll(listaDeEstadosDestino);
+        listaDeEstadosDestino.clear();
+
+        removeDuplicatasDaLista(listaDeEstadosAtivos);
+
+
+        System.out.println("estados ativos" + listaDeEstadosAtivos + " será lida: '" + cadeiaDeDados + "'");
+
+
+        for (AutomatoFN listaDeEstadosAtivo : listaDeEstadosAtivos) {
+//            System.out.println("lista de estado que devem ser adicionados a lista de estado destino" + listaDeEstadosAtivo.cadeiaEstadoHashMap.get(cadeiaDeDados));
+
+            listaDeEstadosAtivo.cadeiaEstadoHashMap.get(cadeiaDeDados).forEach(estadoDestino -> {
+
+                listaDeEstadosDestino.add(estadoDestino);
+
+//
+            });
+
+        }
+
+
+//
+
+//        System.out.println("a" + listaDeEstadosAtivos);
+//        System.out.println("d" + listaDeEstadosDestino);
+
+        Boolean contains = false;
+
+        //se não contem, deve executar "clear" estados ativos;
+
+        for (int i = 0; i < listaDeEstadosDestino.size(); i++) {
+            if (listaDeEstadosDestino.size() > 0 && listaDeEstadosDestino.get(i).getCadeiaEstadoHashMap().containsKey("_")) {
+                contains = true;
+                break;
+
+            }
+
+
+        }
+
+        if (!contains) listaDeEstadosAtivos.clear();
+
+
+//        System.out.println("lista destiaaaaaaaano" + listaDeEstadosDestino);
+
+//        System.out.println("d" + listaDeEstadosDestino);
+//        System.out.println("vai ler:" + listaDeEstadosDestino.get(0).getCadeiaEstadoHashMap().containsKey("_"));
+//        System.out.println("cehmp:" + listaDeEstadosDestino.get(0).getCadeiaEstadoHashMap());
+
+
+//        System.out.println(listaDeEstadosDestino.size());
+//        for (int i = 0; i < listaDeEstadosDestino.size(); i++) {
+////            System.out.println(i);
+//            if (listaDeEstadosDestino.get(i).getCadeiaEstadoHashMap().containsKey("_")) {
+//                obterTransicaoEspontanea(listaDeEstadosDestino, cadeiaDeDados);
+//            }
+////            System.out.println(i);
+//
+//
+//        }
+
+
+        listaDeEstadosAtivos.addAll(listaDeEstadosDestino);
+
+        removeDuplicatasDaLista(listaDeEstadosAtivos);
+//
+//        System.out.println("lista destinoa" + listaDeEstadosDestino);
+//        System.out.println("lista ativoos" + listaDeEstadosAtivos);
+
+
+//        listaDeEstadosDestino.forEach(estadoAtivar -> {
+//            estadoAtivar.estadoAtivo = true;
+//
+//
+//
+//            if (!listaDeEstadosAtivos.contains(estadoAtivar)) {
+//                listaDeEstadosAtivos.add(estadoAtivar);
+//
+//            }
+//
+//
+//        });
+
+
+        listaDeEstadosDestino.clear();
+
+
+
+//        System.out.println("ativos" + listaDeEstadosAtivos);
+
+        cadeiaAceitaBool = false;
+
+        for (AutomatoFN listaDeEstadosAtivo : listaDeEstadosAtivos)
+            if (listaDeEstadosAtivo.estadoFinal) {
+                cadeiaAceitaBool = true;
+                break;
+            }
+
+    }
+
+
+    private void obterTransicaoEspontanea(List<AutomatoFN> listaDeEstadosAtivos, String cadeiaDeDados) {
+
+
+        listaDeEstadosAtivos.clear();
+////
+//        System.out.println("da" + listaDeEstadosDestino);
+//        System.out.println("a" + listaDeEstadosAtivos);
+
+        listaDeEstadosAtivos.forEach(estadoAtivo -> {
+            listaDeEstadosDestino.addAll(estadoAtivo.cadeiaEstadoHashMap.get("_"));
+        });
+
+
+        for (AutomatoFN listaDeEstadosAtivo : listaDeEstadosAtivos) {
+
+//            System.out.println("lista de estado que devem ser adicionados a lista de estado destino" + listaDeEstadosAtivo.cadeiaEstadoHashMap.get(cadeiaDeDados));
+
+            listaDeEstadosAtivo.cadeiaEstadoHashMap.get(cadeiaDeDados).forEach(estadoDestino -> {
+
+                listaDeEstadosDestino.add(estadoDestino);
+                removeDuplicatasDaLista(listaDeEstadosDestino);
+
+
+            });
+
+
+        }
+//        System.out.println("lista destino" + listaDeEstadosDestino);
+    }
+
 }
-
-
 
 

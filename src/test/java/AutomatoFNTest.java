@@ -38,9 +38,6 @@ public class AutomatoFNTest {
     }
 
 
-
-
-
     @Test
     public void criarEstadosAPartirDeUmaString() {
 
@@ -68,12 +65,11 @@ public class AutomatoFNTest {
 
     @Test
     public void funcaoDeTransicao() {
+        String cadeiaDeDados = "abaaa";
 
 
         AutomatoFN AutomatoFN = new AutomatoFN();
         AutomatoFN.decodificaStringParaCriarEstados();
-
-        String cadeiaDeDados = "baa";
 
 
         AutomatoFN.lerCadeiaDeDados(cadeiaDeDados);
@@ -88,7 +84,20 @@ public class AutomatoFNTest {
         AutomatoFN.criaEstadosDoAFD();
 
 
+    }
 
 
+    @Test
+    public void lol() {
+
+
+        AutomatoFN AutomatoFN = new AutomatoFN();
+        AutomatoFN.decodificaStringParaCriarEstados();
+
+        AutomatoFN.criaEstadosDoAFD();
+        AutomatoFN.lerCadeiaDeDadosAFD("ababa");
+//        AutomatoFN.lerCadeiaDeDadosAFD(cadeiaDeDados);
     }
 }
+
+
