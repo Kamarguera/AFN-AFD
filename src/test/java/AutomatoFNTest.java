@@ -89,13 +89,11 @@ public class AutomatoFNTest {
 
     @Test
     public void lol() {
-
-
         AutomatoFN AutomatoFN = new AutomatoFN();
         AutomatoFN.decodificaStringParaCriarEstados();
 
         AutomatoFN.criaEstadosDoAFD();
-        AutomatoFN.lerCadeiaDeDadosAFD("ababa");
+        AutomatoFN.lerCadeiaDeDadosAFD("baaa");
 //        AutomatoFN.lerCadeiaDeDadosAFD(cadeiaDeDados);
     }
 }
