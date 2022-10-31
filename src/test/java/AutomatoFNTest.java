@@ -44,13 +44,14 @@ public class AutomatoFNTest {
 
         AutomatoFN AutomatoFN = new AutomatoFN();
         AutomatoFN.decodificaStringParaCriarEstados();
-//        System.out.println(AutomatoFN.getListaDeEstados());
-        //obter o estado atual ativo
-//        AutomatoFN.retornaEstadosAtivosAtuais();
-        //passar uma cadeia para o estado atual ativo
-        String cadeiaDeDados = "a";
+
+        String cadeiaDeDados = "baba";
+
+
         AutomatoFN.lerCadeiaDeDados(cadeiaDeDados);
-        //atualizar estados ativos
+
+
+
 
 
     }
