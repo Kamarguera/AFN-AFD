@@ -1,24 +1,23 @@
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 
 public class AutomatoFN {
 
 
     public static List<AutomatoFN> listaDeEstadosAFN = new ArrayList<>();
-    ListMultimap<String, AutomatoFN> listaDeEstadosAFD = ArrayListMultimap.create();
     public List<AutomatoFN> estadosDeTransicaoAceitos = new ArrayList<>();
     public List<String> cadeiasLidasPeloEstado = new ArrayList<>();
     public ArrayList<AutomatoFN> transicaoDeEstados;
     public List<AutomatoFN> listaDeEstadosAtivos = new ArrayList<>();
     //region variáveis
+    Map<String, List<AutomatoFN>> listaDeEstadosAFD = new HashMap<>();
+    ListMultimap<String, AutomatoFN> cadeiaEstadoHashMap = ArrayListMultimap.create();
     Boolean cadeiaAceitaBool = false;
     List<AutomatoFN> listaDeEstadosDestino = new ArrayList<>();
     //    public HashMap<String>, AutomatoFN> cadeiaEstadoHashMap = new HashMap<>();
-    ListMultimap<String, AutomatoFN> cadeiaEstadoHashMap = ArrayListMultimap.create();
     Boolean estadoInicial, estadoFinal, estadoAtivo = false;
     String caracteresAceitosParaATransicao;
     char cadeia;
@@ -245,7 +244,7 @@ public class AutomatoFN {
             String cadeia = stringCadeiaEstado[0];
             String nomeDoestado = stringCadeiaEstado[1];
             AutomatoFN estado = retornaEstadoAPartirDoNome(nomeDoestado);
-//
+////
 //            System.out.println("cadeia " + cadeia);
 //            System.out.println("estado " + estado);
 
@@ -515,13 +514,117 @@ public class AutomatoFN {
 
     public void criaEstadosDoAFD() {
 
+        System.out.println("Estados do AFD");
+
+
 //
 //        for (int i = 0; i < listaDeEstadosAFN.size(); i++) {
 //
 //
+
+        for (int i = 0; i < listaDeEstadosAFN.size(); i++) {
+
+            for (int j = 0; j < listaDeEstadosAFN.size(); j++) {
+
+
+//                System.out.println(j + 1 + " " + (i + 1));
+
+
+                List<AutomatoFN> value = new ArrayList<>();
+
+                value.add(listaDeEstadosAFN.get(j));
+                if (!value.contains(listaDeEstadosAFN.get(i))) {
+                    value.add(listaDeEstadosAFN.get(i));
+                }
+
+                String key2 = "";
+                if (!Objects.equals(listaDeEstadosAFN.get(i).toString(), listaDeEstadosAFN.get(j).toString())) {
+                    key2 = " " + listaDeEstadosAFN.get(i).toString();
+                }
+                ;
+
+                String key = listaDeEstadosAFN.get(j).toString() + "" + key2;
+
+
+//                System.out.println(key);
+
+                key = "["+ key + "]";
+
+                listaDeEstadosAFD.put(key, value);
+
+
+                if (i + 1 == j + 1) {
+                    j++;
+                }
+
+                if (j - j == i && j + 1 < listaDeEstadosAFN.size()) {
+                    j++;
+                }
+
+
+            }
+
+        }
+
+
+        List<AutomatoFN> value = new ArrayList<>();
+
+        for (AutomatoFN automatoFN : listaDeEstadosAFN) {
+
+            value.add(automatoFN);
+
+        }
+
+        String key = "";
+        for (int i = 0; i < listaDeEstadosAFN.size(); i++) {
+
+            if (i > 0) {
+                key = key + " " + listaDeEstadosAFN.get(i).toString();
+
+            } else {
+                key = key + listaDeEstadosAFN.get(i).toString();
+            }
+
+
+        }
+
+        key = "[" + key + "]";
+
+//        System.out.println(key);
+
+        listaDeEstadosAFD.put(key, value);
+
+//        System.out.println(listaDeEstadosAFN);
+
 //
-//        }
-        System.out.println(listaDeEstadosAFN);
+//        System.out.println(listaDeEstadosAFN.get(0));
+//        System.out.println(listaDeEstadosAFN.get(1));
+////
+//
+
+
+        ///estado vazio
+        List<AutomatoFN> listaVazia = new ArrayList<>();
+        listaDeEstadosAFD.put("_", listaVazia);
+
+
+
+
+
+
+
+
+
+
+
+        System.out.println(listaDeEstadosAFD.size());
+
+
+        listaDeEstadosAFD.get(0);
+
+        System.out.println(listaDeEstadosAFD);
+////        }
+//        System.out.println(listaDeEstadosAFD.get("[q1 q2]"));
 
 
     }

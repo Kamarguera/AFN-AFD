@@ -87,5 +87,8 @@ public class AutomatoFNTest {
         AutomatoFN.decodificaStringParaCriarEstados();
         AutomatoFN.criaEstadosDoAFD();
 
+
+
+
     }
 }
