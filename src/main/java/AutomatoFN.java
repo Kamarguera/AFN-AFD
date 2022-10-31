@@ -8,7 +8,8 @@ import java.util.List;
 public class AutomatoFN {
 
 
-    public static List<AutomatoFN> listaDeEstados = new ArrayList<>();
+    public static List<AutomatoFN> listaDeEstadosAFN = new ArrayList<>();
+    ListMultimap<String, AutomatoFN> listaDeEstadosAFD = ArrayListMultimap.create();
     public List<AutomatoFN> estadosDeTransicaoAceitos = new ArrayList<>();
     public List<String> cadeiasLidasPeloEstado = new ArrayList<>();
     public ArrayList<AutomatoFN> transicaoDeEstados;
@@ -21,9 +22,9 @@ public class AutomatoFN {
     Boolean estadoInicial, estadoFinal, estadoAtivo = false;
     String caracteresAceitosParaATransicao;
     char cadeia;
-    String stringDeEntrada = "q1, b q2, _ q3, true,true\n" +
-            "q2, a q2, a q3, b q3,  false,false\n" +
-            "q3, a q1,        false,false";
+    String stringDeEntrada = "q1, _ q2, b q3, true,true\n" +
+            "q2, a q1,  false,false\n" +
+            "q3, a q3, a q2, b q2, false,false";
     private String nome;
 
 
@@ -95,11 +96,11 @@ public class AutomatoFN {
     }
 
     public List<AutomatoFN> getListaDeEstados() {
-        return listaDeEstados;
+        return listaDeEstadosAFN;
     }
 
     public void setListaDeEstados(List<AutomatoFN> listaDeEstados) {
-        this.listaDeEstados = listaDeEstados;
+        this.listaDeEstadosAFN = listaDeEstados;
     }
 
     public String getNome() {
@@ -162,8 +163,8 @@ public class AutomatoFN {
 
             String[] estados = cadeiaDeEntradaSeparadaPorLinhas[i].split(",");
 
-//            adicionarEstadosDeTransicao(estados, listaDeEstados.get(i));
-            importarCadeiasLidasPeloEstado(cadeiaDeEntradaSeparadaPorLinhas[i], listaDeEstados.get(i));
+//            adicionarEstadosDeTransicao(estados, listaDeEstadosAFN.get(i));
+            importarCadeiasLidasPeloEstado(cadeiaDeEntradaSeparadaPorLinhas[i], listaDeEstadosAFN.get(i));
 
 
         }
@@ -183,7 +184,7 @@ public class AutomatoFN {
             System.out.println(estados[i]);
             q.estadosDeTransicaoAceitos.add(
 
-                    listaDeEstados.get(i)
+                    listaDeEstadosAFN.get(i)
 
             );
 
@@ -194,7 +195,7 @@ public class AutomatoFN {
 
     private void printEstadosAceitosECadeias() {
 
-        listaDeEstados.forEach((estado) -> {
+        listaDeEstadosAFN.forEach((estado) -> {
 
             System.out.println("Estado: [" + estado + "] " + "Transições: " + estado.getCadeiaEstadoHashMap());
 
@@ -204,7 +205,7 @@ public class AutomatoFN {
     }
 
     private void adicionaEstadosNaLista(AutomatoFN q) {
-        listaDeEstados.add(q);
+        listaDeEstadosAFN.add(q);
     }
 
     private void adicionaEstadosAtivosNaListaDeEstadosAtivos(AutomatoFN q) {
@@ -260,7 +261,7 @@ public class AutomatoFN {
         AutomatoFN retornaEstado = null;
 
 
-        for (AutomatoFN estado : listaDeEstados) {
+        for (AutomatoFN estado : listaDeEstadosAFN) {
             if (nomeDoEstado.equals(estado.getNome())) {
 
                 retornaEstado = estado;
@@ -312,7 +313,7 @@ public class AutomatoFN {
         listaDeEstadosAtivos.addAll(listaDeEstadosDestino);
         listaDeEstadosDestino.clear();
 
-        System.out.println("estados ativos" + listaDeEstadosAtivos + " será lida:  " + cadeiaDeDados);
+        System.out.println("estados ativos" + listaDeEstadosAtivos + " será lida: '" + cadeiaDeDados + "'");
 
 
         for (AutomatoFN listaDeEstadosAtivo : listaDeEstadosAtivos) {
@@ -472,7 +473,7 @@ public class AutomatoFN {
         AutomatoFN retornaEstadoAtivo = null;
 
 
-        for (AutomatoFN estado : listaDeEstados) {
+        for (AutomatoFN estado : listaDeEstadosAFN) {
             if (estado.getEstadoAtivo()) {
                 System.out.print("[" + estado + "]");
                 retornaEstadoAtivo = estado;
@@ -506,8 +507,22 @@ public class AutomatoFN {
             caractere = String.valueOf(cadeiaDeDados.charAt(i));
             lerCaracteresUmAUmInserindoNoAutomato(caractere);
         }
+        System.out.println("Após ler cadeia: '" + cadeiaDeDados.substring(cadeiaDeDados.length() - 1) + "' estados ativos: " + listaDeEstadosAtivos);
 
         verificarSeCadeiaAceita();
+
+    }
+
+    public void criaEstadosDoAFD() {
+
+//
+//        for (int i = 0; i < listaDeEstadosAFN.size(); i++) {
+//
+//
+//
+//        }
+        System.out.println(listaDeEstadosAFN);
+
 
     }
 }

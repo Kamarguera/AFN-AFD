@@ -1,0 +1,3 @@
+q1, _ q2, b q3, true,true
+q2, a q1,  false,false
+q3, a q3, a q2, b q2, false,false

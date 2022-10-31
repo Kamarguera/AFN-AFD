@@ -38,23 +38,7 @@ public class AutomatoFNTest {
     }
 
 
-    @Test
-    public void funcaoDeTransicao() {
 
-
-        AutomatoFN AutomatoFN = new AutomatoFN();
-        AutomatoFN.decodificaStringParaCriarEstados();
-
-        String cadeiaDeDados = "baba";
-
-
-        AutomatoFN.lerCadeiaDeDados(cadeiaDeDados);
-
-
-
-
-
-    }
 
 
     @Test
@@ -76,8 +60,32 @@ public class AutomatoFNTest {
         //get estado ativo e insere cadeia;
 
 
-//        System.out.println(AutomatoFN.listaDeEstados.get(q1));
+//        System.out.println(AutomatoFN.listaDeEstadosAFN.get(q1));
 
+
+    }
+
+
+    @Test
+    public void funcaoDeTransicao() {
+
+
+        AutomatoFN AutomatoFN = new AutomatoFN();
+        AutomatoFN.decodificaStringParaCriarEstados();
+
+        String cadeiaDeDados = "baa";
+
+
+        AutomatoFN.lerCadeiaDeDados(cadeiaDeDados);
+
+    }
+
+    @Test
+    public void criaEstadosDoAFD() {
+
+        AutomatoFN AutomatoFN = new AutomatoFN();
+        AutomatoFN.decodificaStringParaCriarEstados();
+        AutomatoFN.criaEstadosDoAFD();
 
     }
 }
