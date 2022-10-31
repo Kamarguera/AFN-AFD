@@ -9,7 +9,8 @@ public class Main {
 //
 //
 
-        inserirCadeiaDeDadosNoAFN();
+//        inserirCadeiaDeDadosNoAFN();
+        lerCadeiaTransicoes();
 
 
 //
@@ -17,7 +18,40 @@ public class Main {
 //
 //
    }
-//
+
+    private static void lerCadeiaTransicoes() throws Exception {
+
+
+        String path = "C:\\PROJETOS\\CRESCER\\AFN-AFD\\src\\main\\java\\Cadeia_de_estados_transicoes.txt";
+
+        System.out.println(System.getProperty("user.dir") + "\\src\\main\\java\\Cadeia_de_estados_transicoes.txt");
+
+        File file = new File(
+                path);
+
+        BufferedReader br
+                = new BufferedReader(new FileReader(file));
+
+
+        String cadeiaDeDados = "";
+
+        String st;
+        // Condition holds true till
+        // there is character in a string
+        while ((st = br.readLine()) != null)
+            cadeiaDeDados = st;
+//            System.out.println(st);
+
+        // Print the string
+
+
+//        System.out.println(cadeiaDeDados);
+        System.out.println(cadeiaDeDados);
+
+
+    }
+
+    //
     private static void inserirCadeiaDeDadosNoAFN() throws Exception {
 
 //        System.out.println(

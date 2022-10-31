@@ -93,7 +93,7 @@ public class AutomatoFNTest {
         AutomatoFN.decodificaStringParaCriarEstados();
 
         AutomatoFN.criaEstadosDoAFD();
-        AutomatoFN.lerCadeiaDeDadosAFD("baaa");
+        AutomatoFN.lerCadeiaDeDadosAFD("babbaa");
 //        AutomatoFN.lerCadeiaDeDadosAFD(cadeiaDeDados);
     }
 }
