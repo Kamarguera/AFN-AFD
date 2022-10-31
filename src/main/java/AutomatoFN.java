@@ -24,10 +24,9 @@ public class AutomatoFN {
     Boolean estadoInicial, estadoFinal, estadoAtivo = false;
     String caracteresAceitosParaATransicao;
     char cadeia;
-    String stringDeEntrada =  "q1, _ q3, b q2, true,true\n" +
+    String stringDeEntrada =   "q1, _ q3, b q2, true,true\n" +
             "q2, a q2, a q3, b q3  false,false\n" +
             "q3, a q1, false,false";
-
     private String nome;
 
 

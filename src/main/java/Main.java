@@ -49,7 +49,7 @@ public class Main {
 
 
 //        System.out.println(cadeiaDeDados);
-        System.out.println("main:" + cadeiaDeDados);
+//        System.out.println("main:" + cadeiaDeDados);
 
 
         AutomatoFN AutomatoFN = new AutomatoFN();
