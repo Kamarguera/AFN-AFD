@@ -1,1 +1,3 @@
-q1, _ q2, b q3, true,true\n + q2, a q1,  false,false\n + q3, a q3, a q2, b q2, false,false;
+ "q1, _ q2, b q3, true,true\n" +
+            "q2, a q1,  false,false\n" +
+            "q3, a q3, a q2, b q2, false,false";
