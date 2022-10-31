@@ -145,10 +145,10 @@ public class AutomatoFN {
     public void decodificaStringParaCriarEstados() {
         String[] cadeiaDeEntradaSeparadaPorLinhas = stringDeEntrada.split("\n");
 
-        System.out.println("str entrada:" + stringDeEntrada);
+//        System.out.println("str entrada:" + stringDeEntrada);
 
         for (String linhas : cadeiaDeEntradaSeparadaPorLinhas) {
-            System.out.println(linhas);
+//            System.out.println(linhas);
 
             AutomatoFN q = new AutomatoFN();
 
