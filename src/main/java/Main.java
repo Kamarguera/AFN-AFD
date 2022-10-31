@@ -12,23 +12,25 @@ public class Main {
 //        inserirCadeiaDeDadosNoAFN();
         lerCadeiaTransicoes();
 
+        inserirCadeiaDeDadosNoAFN();
+
 
 //
 //
 //
 //
-   }
+    }
 
     private static void lerCadeiaTransicoes() throws Exception {
 
+        String pathcaracteres = System.getProperty("user.dir") + "\\src\\main\\java\\caracteres.txt";
 
-//        String path = "C:\\PROJETOS\\CRESCER\\AFN-AFD\\src\\main\\java\\Cadeia_de_estados_transicoes.txt";
+        String pathtransicoes = System.getProperty("user.dir") + "\\src\\main\\java\\transicoes.txt";
 //
-//        System.out.println(System.getProperty("user.dir") + "\\src\\main\\java\\Cadeia_de_estados_transicoes.txt");
 
         File file = new File(
-                System.getProperty("user.dir") + "\\src\\main\\java\\Cadeia_de_estados_transicoes.txt"
-                );
+                pathcaracteres
+        );
 
         BufferedReader br
                 = new BufferedReader(new FileReader(file));
@@ -47,7 +49,15 @@ public class Main {
 
 
 //        System.out.println(cadeiaDeDados);
-        System.out.println(cadeiaDeDados);
+        System.out.println("main:" + cadeiaDeDados);
+
+
+        AutomatoFN AutomatoFN = new AutomatoFN();
+//        AutomatoFN.stringDeEntrada(cadeiaDeDados);
+        AutomatoFN.decodificaStringParaCriarEstados();
+
+        AutomatoFN.criaEstadosDoAFD();
+        AutomatoFN.lerCadeiaDeDadosAFD(cadeiaDeDados);
 
 
     }
@@ -56,14 +66,14 @@ public class Main {
     private static void inserirCadeiaDeDadosNoAFN() throws Exception {
 
 //        System.out.println(
-//                System.getProperty("user.dir") + "\\src\\main\\java\\Cadeia_de_caracteres.txt"
+//                System.getProperty("user.dir") + "\\src\\main\\java\\caracteres.txt"
 //        );
-
+        String pathcaracteres = System.getProperty("user.dir") + "\\src\\main\\java\\caracteres.txt";
 
 
         // File path is passed as parameter
         File file = new File(
-                System.getProperty("user.dir") + "\\src\\main\\java\\Cadeia_de_caracteres.txt");
+                pathcaracteres);
 
         // Note:  Double backquote is to avoid compiler
         // interpret words
@@ -82,19 +92,20 @@ public class Main {
             cadeiaDeDados = st;
 //            System.out.println(st);
 
-            // Print the string
+        // Print the string
 
 
+////        System.out.println(cadeiaDeDados);
 //        System.out.println(cadeiaDeDados);
-        System.out.println(cadeiaDeDados);
-
-
-
-        AutomatoFN AutomatoFN = new AutomatoFN();
-        AutomatoFN.decodificaStringParaCriarEstados();
-
-        AutomatoFN.criaEstadosDoAFD();
-        AutomatoFN.lerCadeiaDeDadosAFD("ababa");
+//        System.out.println(cadeiaDeDados);
+//
+//
+//        AutomatoFN AutomatoFN = new AutomatoFN();
+//        AutomatoFN.decodificaStringParaCriarEstados();
+//
+//
+//        AutomatoFN.criaEstadosDoAFD();
+//        AutomatoFN.lerCadeiaDeDadosAFD(cadeiaDeDados);
 
 
     }

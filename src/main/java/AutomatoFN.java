@@ -27,6 +27,7 @@ public class AutomatoFN {
     String stringDeEntrada = "q1, _ q2, b q3, true,true\n" +
             "q2, a q1,  false,false\n" +
             "q3, a q3, a q2, b q2, false,false";
+
     private String nome;
 
 
@@ -145,7 +146,10 @@ public class AutomatoFN {
     public void decodificaStringParaCriarEstados() {
         String[] cadeiaDeEntradaSeparadaPorLinhas = stringDeEntrada.split("\n");
 
+        System.out.println("str entrada:" + stringDeEntrada);
+
         for (String linhas : cadeiaDeEntradaSeparadaPorLinhas) {
+            System.out.println(linhas);
 
             AutomatoFN q = new AutomatoFN();
 
@@ -344,6 +348,11 @@ public class AutomatoFN {
         verificarSeCadeiaAceita();
     }
 
+    public String stringDeEntrada(String transicoes){
+
+        this.stringDeEntrada = transicoes;
+        return transicoes;
+    }
     public List<AutomatoFN> lerCadeiaDeDadosAFD(String cadeiaDeDados) {
 
         System.out.println("Cadeia de entrada: "+cadeiaDeDados);

@@ -65,7 +65,7 @@ public class AutomatoFNTest {
 
     @Test
     public void funcaoDeTransicao() {
-        String cadeiaDeDados = "abaaa";
+        String cadeiaDeDados = "ab";
 
 
         AutomatoFN AutomatoFN = new AutomatoFN();
@@ -93,7 +93,7 @@ public class AutomatoFNTest {
         AutomatoFN.decodificaStringParaCriarEstados();
 
         AutomatoFN.criaEstadosDoAFD();
-        AutomatoFN.lerCadeiaDeDadosAFD("babbaa");
+        AutomatoFN.lerCadeiaDeDadosAFD("abaaaaa");
 //        AutomatoFN.lerCadeiaDeDadosAFD(cadeiaDeDados);
     }
 }
