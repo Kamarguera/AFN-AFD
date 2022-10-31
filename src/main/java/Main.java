@@ -22,12 +22,13 @@ public class Main {
     private static void lerCadeiaTransicoes() throws Exception {
 
 
-        String path = "C:\\PROJETOS\\CRESCER\\AFN-AFD\\src\\main\\java\\Cadeia_de_estados_transicoes.txt";
-
-        System.out.println(System.getProperty("user.dir") + "\\src\\main\\java\\Cadeia_de_estados_transicoes.txt");
+//        String path = "C:\\PROJETOS\\CRESCER\\AFN-AFD\\src\\main\\java\\Cadeia_de_estados_transicoes.txt";
+//
+//        System.out.println(System.getProperty("user.dir") + "\\src\\main\\java\\Cadeia_de_estados_transicoes.txt");
 
         File file = new File(
-                path);
+                System.getProperty("user.dir") + "\\src\\main\\java\\Cadeia_de_estados_transicoes.txt"
+                );
 
         BufferedReader br
                 = new BufferedReader(new FileReader(file));
